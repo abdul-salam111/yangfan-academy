@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <script type="text/javascript" src="https://alcdn.msauth.net/browser/2.13.1/js/msal-browser.min.js"
+    integrity="sha384-2Vr9MyareT7qv+wLp1zBt78ZWB4aljfCTMUrml3/cxm0W81ahmDOC6uyNmmn0Vrc"
+    crossorigin="anonymous"></script>
+  <script src="assets/packages/aad_oauth/assets/msalv2.js"></script>
+  <meta name="google-signin-client_id"
+    content="110545486777-b7m84fpdektn9u880fpf5geh05o48a0p.apps.googleusercontent.com">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+
+<script src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+    AppleID.auth.init({
+      clientId: 'com.yangfanacademy.web',
+      scope: 'name email',
+      redirectURI: 'https://abdul-salam111.github.io/yangfan-academy/callbacks/sign_in_with_apple',
+      state: 'origin:web',
+      usePopup: true
+    });
+  });
+</script>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/yangfan-academy/">
+
+
+  <meta name="robots" content="noindex, nofollow">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description"
+    content="Yang Fan enhances childhood education in preschool, after school, and summer camp programs. Serving at major cities in California.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Yang Fan Academy">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <title>Yang Fan Academy - Preschool, Afterschool and Summer Camp</title>
+  <link rel="manifest" href="manifest.json">
+  <!-- Open Graph Meta Tags (Facebook, LinkedIn, WhatsApp) -->
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Yang Fan Academy - Preschool, Afterschool, and Summer Camp" />
+  <meta property="og:description"
+    content="Discover why families love Yang Fan's enriching curriculum that builds both skills and confidence. Click now to claim your special newcomer discount of up to $250 and start your child's journey to success!" />
+  <meta property="og:url" content="https://yfacademy.org/enroll/referral?referral_id=2008" />
+  <meta property="og:site_name" content="Yang Fan Academy" />
+  <meta property="article:modified_time" content="2024-09-02T09:34:02+00:00" />
+  <meta property="og:image" content="https://yfacademy.org/enroll/referral-image-250.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Yang Fan Academy - Preschool, Afterschool, and Summer Camp" />
+  <meta name="twitter:description"
+    content="Discover why families love Yang Fan's enriching curriculum that builds both skills and confidence. Click now to claim your special newcomer discount of up to $250 and start your child's journey to success!" />
+  <meta name="twitter:image" content="https://yfacademy.org/enroll/referral-image-250.png" />
+  <meta name="twitter:url" content="https://yfacademy.org/enroll/referral?referral_id=2008" />
+
+  <meta name="referrer" content="no-referrer">
+
+  <style>
+    .loading-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #B1E5BC 0%, #a0d9ab 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow: hidden;
+    }
+
+    .loading-content {
+      text-align: center;
+      animation: slideUp 0.8s ease-out;
+    }
+
+    .loading-logo {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 30px;
+      animation: floatLogo 3s ease-in-out infinite;
+      transition: transform 0.3s ease;
+    }
+
+    .loading-text {
+      color: #1a5a2e;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-align: center;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+    }
+
+    .loading-subtext {
+      color: #2d6b3e;
+      font-size: 16px;
+      font-weight: 400;
+      margin-bottom: 30px;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+
+    .loading-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .loading-dot {
+      width: 12px;
+      height: 12px;
+      background: #21A33C;
+      border-radius: 50%;
+      animation: dotPulse 1.5s ease-in-out infinite;
+    }
+
+    .loading-dot:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .loading-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .loading-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    .background-decoration {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .decoration-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .decoration-circle:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      top: -150px;
+      right: -150px;
+      animation-delay: 0s;
+    }
+
+    .decoration-circle:nth-child(2) {
+      width: 200px;
+      height: 200px;
+      bottom: -100px;
+      left: -100px;
+      animation-delay: 2s;
+    }
+
+    .decoration-circle:nth-child(3) {
+      width: 150px;
+      height: 150px;
+      top: 20%;
+      left: -75px;
+      animation-delay: 4s;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes floatLogo {
+
+      0%,
+      100% {
+        transform: translateY(0px) scale(1);
+      }
+
+      50% {
+        transform: translateY(-10px) scale(1.02);
+      }
+    }
+
+    @keyframes dotPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+
+      50% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-20px) rotate(180deg);
+      }
+    }
+
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.6s ease-out;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Prevent layout shifts */
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+
+    @media (min-width: 769px) {
+      .loading-logo {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 40px;
+      }
+
+      .loading-text {
+        font-size: 32px;
+        margin-bottom: 12px;
+      }
+
+      .loading-subtext {
+        font-size: 18px;
+        margin-bottom: 40px;
+      }
+    }
+  </style>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LfKOn4rAAAAAAHpORzjqFxllofdC_IxxcbPIPYr"></script>
+
+</head>
+<script>
+  function googleLogin() {
+    // Return a Promise so Flutter can await it
+    return new Promise((resolve, reject) => {
+      if (!google?.accounts?.id) {
+        reject("Google API not loaded");
+        return;
+      }
+
+      google.accounts.id.initialize({
+        client_id: "110545486777-b7m84fpdektn9u880fpf5geh05o48a0p.apps.googleusercontent.com",
+        callback: (response) => {
+          if (response && response.credential) {
+            window.localStorage.setItem("google_token", response.credential);
+            resolve(response.credential);
+          } else {
+            reject("No token received");
+          }
+        },
+      });
+
+      // Show the One Tap prompt
+      google.accounts.id.prompt((notification) => {
+        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+          // optional: you can reject here or just ignore
+          console.log("Google login prompt skipped or not displayed");
+        }
+      });
+    });
+  }
+
+  function handleCredentialResponse(response) {
+    // This is the Google JWT
+    const token = response.credential;
+
+    // Store token so Flutter can access it
+    window.localStorage.setItem("google_token", token);
+  }
+</script>
+
+
+<body>
+  <!-- Loading Screen -->
+  <div id="loading" class="loading-container">
+    <div class="background-decoration">
+      <div class="decoration-circle"></div>
+      <div class="decoration-circle"></div>
+      <div class="decoration-circle"></div>
+    </div>
+
+    <div class="loading-content">
+      <img src="icons/Icon-192.png" alt="Yang Fan Academy Logo" class="loading-logo">
+      <div class="loading-text">Yang Fan Academy</div>
+      <div class="loading-subtext">Loading your educational experience</div>
+      <div class="loading-dots">
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+      </div>
+    </div>
+  </div>
+  <div id="g_id_signin"></div>
+
+  <script>
+    // Hide loading screen when Flutter is ready
+    window.addEventListener('flutter-initialized', function () {
+      const loading = document.getElementById('loading');
+      loading.classList.add('fade-out');
+      setTimeout(() => {
+        loading.style.display = 'none';
+      }, 500);
+    });
+
+    // Fallback: Hide loading screen after 10 seconds if Flutter hasn't loaded
+    setTimeout(() => {
+      const loading = document.getElementById('loading');
+      if (loading && loading.style.display !== 'none') {
+        loading.classList.add('fade-out');
+        setTimeout(() => {
+          loading.style.display = 'none';
+        }, 500);
+      }
+    }, 10000);
+  </script>
+
+  <script src="flutter_bootstrap.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <script>
+    // Override the Flutter loading callback to hide our custom loading screen
+    if (typeof _flutter !== 'undefined') {
+      const originalLoad = _flutter.loader.load;
+      _flutter.loader.load = function (config) {
+        return originalLoad.call(this, config).then((engineInitializer) => {
+          return engineInitializer.initializeEngine(config).then((appRunner) => {
+            // Hide loading screen when Flutter app is about to run
+            const loading = document.getElementById('loading');
+            if (loading) {
+              loading.classList.add('fade-out');
+              setTimeout(() => {
+                loading.style.display = 'none';
+              }, 500);
+            }
+            return appRunner;
+          });
+        });
+      };
+    }
+  </script>
+</body>
+
+</html>
